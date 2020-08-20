@@ -9,6 +9,7 @@
  */
 
 import React from 'react';
+import Icon from 'react-native-vector-icons/AntDesign';
 import {
   SafeAreaView,
   StyleSheet,
@@ -44,6 +45,9 @@ const App = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
+              <Text>
+                <Icon name="gift" size={30} color="#900" />
+              </Text>
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.tsx</Text> to change

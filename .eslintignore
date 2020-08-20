@@ -63,3 +63,4 @@ buck-out/
 /ios/Pods/
 
 App-test.tsx
+react-native.config.js
