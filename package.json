@@ -40,6 +40,11 @@
     "react-test-renderer": "16.13.1",
     "typescript": "^3.8.3"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && yarn run lint"
+    }
+  },
   "jest": {
     "preset": "react-native",
     "moduleFileExtensions": [
