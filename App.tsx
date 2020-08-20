@@ -93,8 +93,8 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 24,
-    fontWeight: '600',
     color: Colors.black,
+    fontFamily: 'BadScript-Regular',
   },
   sectionDescription: {
     marginTop: 8,
