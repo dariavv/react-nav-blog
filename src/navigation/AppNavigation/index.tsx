@@ -16,7 +16,7 @@ const AppNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="BookedScreen"
+        initialRouteName="MainScreen"
         screenOptions={{
           headerStyle: {
             backgroundColor: THEME.MAIN_COLOR,
