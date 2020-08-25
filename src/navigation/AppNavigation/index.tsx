@@ -3,6 +3,7 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import THEME from 'theme';
 import MainScreen from 'screens/MainScreen';
@@ -10,6 +11,7 @@ import AboutScreen from 'screens/AboutScreen';
 import BookedScreen from 'screens/BookedScreen';
 import CreateScreen from 'screens/CreateScreen';
 import PostScreen from 'screens/PostScreen';
+import HeaderIcon from 'components/HeaderIcon';
 
 const Stack = createStackNavigator();
 
@@ -29,12 +31,21 @@ const AppNavigation = () => {
             fontSize: 24,
             fontFamily: 'BadScript-Regular',
           },
+          headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderIcon}>
+              <Item
+                title="Photo"
+                iconName="camera-outline"
+                onPress={() => {}}
+              />
+            </HeaderButtons>
+          ),
         }}>
         <Stack.Screen
           name="MainScreen"
           component={MainScreen}
           options={{
-            title: 'Main',
+            title: 'Instagram',
           }}
         />
         <Stack.Screen

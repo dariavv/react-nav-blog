@@ -29,14 +29,6 @@ const MainScreen = ({ navigation }: any) => {
           }}
         />
       </View>
-      <View style={styles.button}>
-        <Button
-          title="Go to Post"
-          onPress={() => {
-            navigation.navigate('PostScreen');
-          }}
-        />
-      </View>
     </View>
   );
 };
