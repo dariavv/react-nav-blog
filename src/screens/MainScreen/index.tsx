@@ -1,12 +1,18 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Button, FlatList } from 'react-native';
 
 import THEME from 'theme';
+import DATA from 'data';
+import Post from 'components/Post';
 
 const MainScreen = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
-      <Text>MainScreen</Text>
+      <FlatList
+        data={DATA}
+        keyExtractor={(post: any) => post.id.toString()}
+        renderItem={({ item }) => <Post post={item} />}
+      />
       <View style={styles.button}>
         <Button
           title="Go to About"
@@ -30,8 +36,6 @@ const MainScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
     fontSize: 24,

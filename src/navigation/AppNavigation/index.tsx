@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -19,9 +20,11 @@ const AppNavigation = () => {
         initialRouteName="MainScreen"
         screenOptions={{
           headerStyle: {
-            backgroundColor: THEME.MAIN_COLOR,
+            backgroundColor:
+              Platform.OS === 'android' ? THEME.MAIN_COLOR : THEME.BORDER_COLOR,
           },
-          headerTintColor: THEME.WHITE_COLOR,
+          headerTintColor:
+            Platform.OS === 'android' ? THEME.WHITE_COLOR : THEME.TEXT_COLOR,
           headerTitleStyle: {
             fontSize: 24,
             fontFamily: 'BadScript-Regular',
@@ -39,6 +42,16 @@ const AppNavigation = () => {
           component={AboutScreen}
           options={{
             title: 'About',
+            headerStyle: {
+              backgroundColor:
+                Platform.OS === 'android'
+                  ? THEME.DANGER_COLOR
+                  : THEME.BORDER_COLOR,
+            },
+            headerTintColor:
+              Platform.OS === 'android'
+                ? THEME.WHITE_COLOR
+                : THEME.DANGER_COLOR,
           }}
         />
         <Stack.Screen
