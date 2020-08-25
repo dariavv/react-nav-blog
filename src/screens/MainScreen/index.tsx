@@ -11,6 +11,7 @@ const MainScreen = ({ navigation }: any) => {
       postId: post.id,
       postDescription: post.text,
       postDate: post.date,
+      isBooked: post.booked,
     });
   };
 

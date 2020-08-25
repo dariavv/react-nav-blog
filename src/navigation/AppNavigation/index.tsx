@@ -31,21 +31,30 @@ const AppNavigation = () => {
             fontSize: 24,
             fontFamily: 'BadScript-Regular',
           },
-          headerRight: () => (
-            <HeaderButtons HeaderButtonComponent={HeaderIcon}>
-              <Item
-                title="Photo"
-                iconName="camera-outline"
-                onPress={() => {}}
-              />
-            </HeaderButtons>
-          ),
         }}>
         <Stack.Screen
           name="MainScreen"
           component={MainScreen}
           options={{
             title: 'Instagram',
+            headerRight: () => (
+              <HeaderButtons HeaderButtonComponent={HeaderIcon}>
+                <Item
+                  title="Photo"
+                  iconName="camera-outline"
+                  onPress={() => {}}
+                />
+              </HeaderButtons>
+            ),
+            headerLeft: () => (
+              <HeaderButtons HeaderButtonComponent={HeaderIcon}>
+                <Item
+                  title="Burger"
+                  iconName="menu-outline"
+                  onPress={() => {}}
+                />
+              </HeaderButtons>
+            ),
           }}
         />
         <Stack.Screen
@@ -86,6 +95,15 @@ const AppNavigation = () => {
             title: `Post ${new Date(route.params.postDate).toLocaleDateString(
               'en-EN',
             )}`,
+            headerRight: () => (
+              <HeaderButtons HeaderButtonComponent={HeaderIcon}>
+                <Item
+                  title="Photo"
+                  iconName={route.params.isBooked ? 'star' : 'star-outline'}
+                  onPress={() => {}}
+                />
+              </HeaderButtons>
+            ),
           })}
         />
       </Stack.Navigator>
