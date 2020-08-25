@@ -71,9 +71,11 @@ const AppNavigation = () => {
         <Stack.Screen
           name="PostScreen"
           component={PostScreen}
-          options={{
-            title: 'Post',
-          }}
+          options={({ route }: any) => ({
+            title: `Post ${new Date(route.params.postDate).toLocaleDateString(
+              'en-EN',
+            )}`,
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>

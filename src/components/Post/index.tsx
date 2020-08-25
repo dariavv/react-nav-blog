@@ -1,19 +1,27 @@
 import React from 'react';
-import { StyleSheet, View, Text, ImageBackground } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+} from 'react-native';
 
 import THEME from 'theme';
 
-const Post = ({ post }: any) => {
+const Post = ({ post, openItem }: any) => {
   return (
-    <View style={styles.post}>
-      <ImageBackground style={styles.image} source={{ uri: post.img }}>
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>
-            {new Date(post.date).toLocaleDateString()}
-          </Text>
-        </View>
-      </ImageBackground>
-    </View>
+    <TouchableOpacity activeOpacity={0.7} onPress={() => openItem(post)}>
+      <View style={styles.post}>
+        <ImageBackground style={styles.image} source={{ uri: post.img }}>
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>
+              {new Date(post.date).toLocaleDateString('en-GB')}
+            </Text>
+          </View>
+        </ImageBackground>
+      </View>
+    </TouchableOpacity>
   );
 };
 

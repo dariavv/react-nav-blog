@@ -6,12 +6,20 @@ import DATA from 'data';
 import Post from 'components/Post';
 
 const MainScreen = ({ navigation }: any) => {
+  const openItem = (post: any) => {
+    navigation.navigate('PostScreen', {
+      postId: post.id,
+      postDescription: post.text,
+      postDate: post.date,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
         data={DATA}
         keyExtractor={(post: any) => post.id.toString()}
-        renderItem={({ item }) => <Post post={item} />}
+        renderItem={({ item }) => <Post post={item} openItem={openItem} />}
       />
       <View style={styles.button}>
         <Button
@@ -36,6 +44,7 @@ const MainScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
   },
   title: {
     fontSize: 24,

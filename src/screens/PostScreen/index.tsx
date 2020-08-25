@@ -1,35 +1,93 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  Image,
+  ScrollView,
+  Alert,
+} from 'react-native';
 
+import DATA from 'data';
 import THEME from 'theme';
 
-const PostScreen = ({ navigation }: any) => {
+type PostType = {
+  id: string;
+  img: string;
+  text: string;
+  date: string;
+  booked: boolean;
+};
+
+const PostScreen = ({ route, navigation }: any) => {
+  const { postId } = route.params;
+
+  const post: PostType | undefined = DATA.find(
+    (postItem) => postItem.id === postId,
+  );
+
+  const removeItem = () => {
+    Alert.alert(
+      'Delete Post',
+      `Are you sure you want to delete Post ${new Date(
+        route.params.postDate,
+      ).toLocaleDateString('en-EN')}?`,
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: () => {},
+        },
+      ],
+      { cancelable: false },
+    );
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>PostScreen</Text>
-      <View style={styles.button}>
+    <ScrollView style={styles.container}>
+      <Image source={{ uri: post?.img }} style={styles.image} />
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>{post?.text}</Text>
+      </View>
+      <View>
+        <Button
+          title="Delete"
+          onPress={removeItem}
+          color={THEME.DANGER_COLOR}
+        />
+      </View>
+      <View>
         <Button
           title="Go to Home"
           onPress={() => navigation.navigate('MainScreen')}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 10,
   },
-  title: {
-    fontSize: 24,
+  image: {
+    width: '100%',
+    height: 200,
+  },
+  textContainer: {
+    padding: 10,
+  },
+  text: {
+    fontSize: 20,
     color: THEME.TEXT_COLOR,
-    fontFamily: 'OpenSans-Bold',
-  },
-  button: {
-    marginVertical: 10,
+    fontFamily: 'OpenSans-Light',
+    textAlign: 'center',
   },
 });
 
