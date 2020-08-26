@@ -8,6 +8,7 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
+import { format } from 'date-fns';
 
 import DATA from 'data';
 import THEME from 'theme';
@@ -23,16 +24,21 @@ type PostType = {
 const PostScreen = ({ route, navigation }: any) => {
   const { postId } = route.params;
 
-  const post: PostType | undefined = DATA.find(
-    (postItem) => postItem.id === postId,
-  );
+  const post: PostType = DATA.find((postItem) => postItem.id === postId) || {
+    id: '0',
+    img: '',
+    text: '',
+    date: '',
+    booked: false,
+  };
 
   const removeItem = () => {
     Alert.alert(
       'Delete Post',
-      `Are you sure you want to delete Post ${new Date(
-        route.params.postDate,
-      ).toLocaleDateString('en-EN')}?`,
+      `Are you sure you want to delete Post ${format(
+        new Date(post.date),
+        'dd-MM-yyyy HH:mm',
+      )}?`,
       [
         {
           text: 'Cancel',
@@ -50,9 +56,9 @@ const PostScreen = ({ route, navigation }: any) => {
 
   return (
     <ScrollView style={styles.container}>
-      <Image source={{ uri: post?.img }} style={styles.image} />
+      <Image source={{ uri: post.img }} style={styles.image} />
       <View style={styles.textContainer}>
-        <Text style={styles.text}>{post?.text}</Text>
+        <Text style={styles.text}>{post.text}</Text>
       </View>
       <View>
         <Button
