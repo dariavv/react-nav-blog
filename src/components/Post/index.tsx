@@ -6,6 +6,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
+import { format } from 'date-fns';
 
 import THEME from 'theme';
 
@@ -16,7 +17,7 @@ const Post = ({ post, openItem }: any) => {
         <ImageBackground style={styles.image} source={{ uri: post.img }}>
           <View style={styles.textContainer}>
             <Text style={styles.text}>
-              {new Date(post.date).toLocaleDateString('en-GB')}
+              {format(new Date(post.date), 'dd-MM-yyyy HH:mm')}
             </Text>
           </View>
         </ImageBackground>

@@ -3,7 +3,7 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { format } from 'date-fns';
 
 import THEME from 'theme';
 import MainScreen from 'screens/MainScreen';
@@ -11,7 +11,7 @@ import AboutScreen from 'screens/AboutScreen';
 import BookedScreen from 'screens/BookedScreen';
 import CreateScreen from 'screens/CreateScreen';
 import PostScreen from 'screens/PostScreen';
-import HeaderIcon from 'components/HeaderIcon';
+import HeaderNavButtons from 'components/HeaderNavButtons';
 
 const Stack = createStackNavigator();
 
@@ -38,28 +38,24 @@ const AppNavigation = () => {
           options={{
             title: 'Instagram',
             headerRight: () => (
-              <HeaderButtons HeaderButtonComponent={HeaderIcon}>
-                <Item
-                  title="Photo"
-                  iconName="camera-outline"
-                  onPress={() => {}}
-                />
-              </HeaderButtons>
+              <HeaderNavButtons
+                title="Photo"
+                iconName="camera-outline"
+                onPress={() => {}}
+              />
             ),
             headerLeft: () => (
-              <HeaderButtons HeaderButtonComponent={HeaderIcon}>
-                <Item
-                  title="Burger"
-                  iconName="menu-outline"
-                  onPress={() => {}}
-                />
-              </HeaderButtons>
+              <HeaderNavButtons
+                title="Burger"
+                iconName="menu-outline"
+                onPress={() => {}}
+              />
             ),
           }}
         />
         <Stack.Screen
-          name="AboutScreen"
           component={AboutScreen}
+          name="AboutScreen"
           options={{
             title: 'About',
             headerStyle: {
@@ -92,17 +88,16 @@ const AppNavigation = () => {
           name="PostScreen"
           component={PostScreen}
           options={({ route }: any) => ({
-            title: `Post ${new Date(route.params.postDate).toLocaleDateString(
-              'en-EN',
+            title: `Post ${format(
+              new Date(route.params.postDate),
+              'dd-MM-yyyy',
             )}`,
             headerRight: () => (
-              <HeaderButtons HeaderButtonComponent={HeaderIcon}>
-                <Item
-                  title="Photo"
-                  iconName={route.params.isBooked ? 'star' : 'star-outline'}
-                  onPress={() => {}}
-                />
-              </HeaderButtons>
+              <HeaderNavButtons
+                title="Star"
+                iconName={route.params.isBooked ? 'star' : 'star-outline'}
+                onPress={() => {}}
+              />
             ),
           })}
         />

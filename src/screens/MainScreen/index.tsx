@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet, View, Button, FlatList } from 'react-native';
 
 import THEME from 'theme';
@@ -15,11 +15,13 @@ const MainScreen = ({ navigation }: any) => {
     });
   };
 
+  const keyExtractor = useCallback((post: any) => post.id.toString(), []);
+
   return (
     <View style={styles.container}>
       <FlatList
         data={DATA}
-        keyExtractor={(post: any) => post.id.toString()}
+        keyExtractor={keyExtractor}
         renderItem={({ item }) => <Post post={item} openItem={openItem} />}
       />
       <View style={styles.button}>
