@@ -15,7 +15,7 @@ import THEME from 'theme';
 
 type PostType = {
   id: string;
-  img: string;
+  img: any;
   text: string;
   date: string;
   booked: boolean;
@@ -56,7 +56,7 @@ const PostScreen = ({ route, navigation }: any) => {
 
   return (
     <ScrollView style={styles.container}>
-      <Image source={{ uri: post.img }} style={styles.image} />
+      <Image source={post.img} style={styles.image} />
       <View style={styles.textContainer}>
         <Text style={styles.text}>{post.text}</Text>
       </View>
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 200,
+    height: 300,
   },
   textContainer: {
     padding: 10,

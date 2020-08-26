@@ -14,7 +14,7 @@ const Post = ({ post, openItem }: any) => {
   return (
     <TouchableOpacity activeOpacity={0.7} onPress={() => openItem(post)}>
       <View style={styles.post}>
-        <ImageBackground style={styles.image} source={{ uri: post.img }}>
+        <ImageBackground style={styles.image} source={post.img}>
           <View style={styles.textContainer}>
             <Text style={styles.text}>
               {format(new Date(post.date), 'dd-MM-yyyy HH:mm')}
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 200,
+    height: 230,
   },
   textContainer: {
     width: '100%',

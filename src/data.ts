@@ -1,43 +1,45 @@
 const DATA = [
   {
     id: '1',
-    img:
-      'https://static.coindesk.com/wp-content/uploads/2019/01/shutterstock_1012724596-860x430.jpg',
+    img: require('../assets/images/1.jpeg'),
     text: 'Awesome text for post 1',
     date: new Date().toJSON(),
     booked: true,
   },
   {
     id: '2',
-    img:
-      'https://cdn.londonandpartners.com/visit/general-london/areas/river/76709-640x360-houses-of-parliament-and-london-eye-on-thames-from-above-640.jpg',
+    img: require('../assets/images/2.jpg'),
     text: 'Awesome text for post 2',
     date: new Date().toJSON(),
     booked: true,
   },
   {
     id: '3',
-    img:
-      'https://static.coindesk.com/wp-content/uploads/2019/01/shutterstock_1012724596-860x430.jpg',
+    img: require('../assets/images/3.jpg'),
     text: 'Awesome text for post 3',
     date: new Date().toJSON(),
     booked: false,
   },
   {
     id: '4',
-    img:
-      'https://cdn.londonandpartners.com/visit/general-london/areas/river/76709-640x360-houses-of-parliament-and-london-eye-on-thames-from-above-640.jpg',
+    img: require('../assets/images/4.jpg'),
     text: 'Awesome text for post 4',
     date: new Date().toJSON(),
     booked: false,
   },
   {
     id: '5',
-    img:
-      'https://static.coindesk.com/wp-content/uploads/2019/01/shutterstock_1012724596-860x430.jpg',
+    img: require('../assets/images/5.jpeg'),
     text: 'Awesome text for post 5',
     date: new Date().toJSON(),
     booked: false,
+  },
+  {
+    id: '6',
+    img: require('../assets/images/6.jpeg'),
+    text: 'Awesome text for post 5',
+    date: new Date().toJSON(),
+    booked: true,
   },
 ];
 
