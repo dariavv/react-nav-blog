@@ -5,8 +5,9 @@ import { HeaderButton } from 'react-navigation-header-buttons';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import THEME from 'theme';
+import { IHeaderIcon } from 'interfaces';
 
-const HeaderIcon = (props: any) => {
+const HeaderIcon: React.FC<IHeaderIcon> = (props) => {
   return (
     <HeaderButton
       {...props}

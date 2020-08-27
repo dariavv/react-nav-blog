@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Button } from 'react-native';
 
 import THEME from 'theme';
 
-const AboutScreen = ({ navigation }: any) => {
+const AboutScreen: React.FC<any> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>AboutScreen</Text>

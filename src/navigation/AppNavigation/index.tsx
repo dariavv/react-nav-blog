@@ -15,7 +15,7 @@ import HeaderNavButtons from 'components/HeaderNavButtons';
 
 const Stack = createStackNavigator();
 
-const AppNavigation = () => {
+const AppNavigation: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator

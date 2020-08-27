@@ -9,8 +9,14 @@ import {
 import { format } from 'date-fns';
 
 import THEME from 'theme';
+import { IPost } from 'interfaces';
 
-const Post = ({ post, openItem }: any) => {
+interface IPostProps {
+  post: IPost;
+  openItem: (post: IPost) => void;
+}
+
+const Post: React.FC<IPostProps> = ({ post, openItem }) => {
   return (
     <TouchableOpacity activeOpacity={0.7} onPress={() => openItem(post)}>
       <View style={styles.post}>

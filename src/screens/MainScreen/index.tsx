@@ -4,9 +4,10 @@ import { StyleSheet, View, Button, FlatList } from 'react-native';
 import THEME from 'theme';
 import DATA from 'data';
 import Post from 'components/Post';
+import { IPost } from 'interfaces';
 
-const MainScreen = ({ navigation }: any) => {
-  const openItem = (post: any) => {
+const MainScreen: React.FC<any> = ({ navigation }) => {
+  const openItem = (post: IPost) => {
     navigation.navigate('PostScreen', {
       postId: post.id,
       postDescription: post.text,
@@ -15,7 +16,7 @@ const MainScreen = ({ navigation }: any) => {
     });
   };
 
-  const keyExtractor = useCallback((post: any) => post.id.toString(), []);
+  const keyExtractor = useCallback((post: IPost) => post.id.toString(), []);
 
   return (
     <View style={styles.container}>

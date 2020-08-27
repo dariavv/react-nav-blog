@@ -12,19 +12,12 @@ import { format } from 'date-fns';
 
 import DATA from 'data';
 import THEME from 'theme';
+import { IPost } from 'interfaces';
 
-type PostType = {
-  id: string;
-  img: any;
-  text: string;
-  date: string;
-  booked: boolean;
-};
-
-const PostScreen = ({ route, navigation }: any) => {
+const PostScreen: React.FC<any> = ({ route, navigation }) => {
   const { postId } = route.params;
 
-  const post: PostType = DATA.find((postItem) => postItem.id === postId) || {
+  const post: IPost = DATA.find((postItem) => postItem.id === postId) || {
     id: '0',
     img: '',
     text: '',

@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Button } from 'react-native';
 
 import THEME from 'theme';
 
-const BookedScreen = ({ navigation }: any) => {
+const BookedScreen: React.FC<any> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>BookedScreen</Text>
