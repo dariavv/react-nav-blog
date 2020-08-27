@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { StyleSheet, View, Button, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 
 import THEME from 'theme';
 import DATA from 'data';
@@ -49,14 +49,6 @@ const MainScreen: React.FC<MainScreenProps> = ({ navigation }) => {
         keyExtractor={keyExtractor}
         renderItem={({ item }) => <Post post={item} openItem={openItem} />}
       />
-      <View style={styles.button}>
-        <Button
-          title="Go to About"
-          onPress={() => {
-            navigation.navigate('AboutScreen');
-          }}
-        />
-      </View>
     </View>
   );
 };

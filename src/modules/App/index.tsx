@@ -1,9 +1,10 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import AppNavigation from 'navigation/AppNavigation';
+
+import { TabNavigation } from 'navigation/AppNavigation';
 
 const App: React.FC = () => {
-  return <AppNavigation />;
+  return <TabNavigation />;
 };
 
 export default App;
