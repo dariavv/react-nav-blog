@@ -6,7 +6,31 @@ import DATA from 'data';
 import Post from 'components/Post';
 import { IPost } from 'interfaces';
 
-const MainScreen: React.FC<any> = ({ navigation }) => {
+import { StackNavigationProp } from '@react-navigation/stack';
+
+type AppNavigationParamList = {
+  MainScreen: undefined;
+  AboutScreen: undefined;
+  BookedScreen: undefined;
+  CreateScreen: undefined;
+  PostScreen: {
+    postId: string;
+    postDescription: string;
+    postDate: string;
+    isBooked: boolean;
+  };
+};
+
+type MainScreenNavigationProp = StackNavigationProp<
+  AppNavigationParamList,
+  'MainScreen'
+>;
+
+type MainScreenProps = {
+  navigation: MainScreenNavigationProp;
+};
+
+const MainScreen: React.FC<MainScreenProps> = ({ navigation }) => {
   const openItem = (post: IPost) => {
     navigation.navigate('PostScreen', {
       postId: post.id,

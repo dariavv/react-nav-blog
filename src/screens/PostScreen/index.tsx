@@ -14,7 +14,35 @@ import DATA from 'data';
 import THEME from 'theme';
 import { IPost } from 'interfaces';
 
-const PostScreen: React.FC<any> = ({ route, navigation }) => {
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+type AppNavigationParamList = {
+  MainScreen: undefined;
+  AboutScreen: undefined;
+  BookedScreen: undefined;
+  CreateScreen: undefined;
+  PostScreen: {
+    postId: string;
+    postDescription: string;
+    postDate: string;
+    isBooked: boolean;
+  };
+};
+
+type ProfileScreenRouteProp = RouteProp<AppNavigationParamList, 'PostScreen'>;
+
+type PostScreenNavigationProp = StackNavigationProp<
+  AppNavigationParamList,
+  'PostScreen'
+>;
+
+type PostScreenProps = {
+  route: ProfileScreenRouteProp;
+  navigation: PostScreenNavigationProp;
+};
+
+const PostScreen: React.FC<PostScreenProps> = ({ route, navigation }) => {
   const { postId } = route.params;
 
   const post: IPost = DATA.find((postItem) => postItem.id === postId) || {
