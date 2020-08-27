@@ -1,9 +1,14 @@
 import React from 'react';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderIcon from 'components/HeaderIcon';
-import { IHeaderIcon } from 'interfaces';
 
-const HeaderNavButtons: React.FC<IHeaderIcon> = ({
+interface IHeaderNavButtons {
+  title: string;
+  iconName: string;
+  onPress: () => void;
+}
+
+const HeaderNavButtons: React.FC<IHeaderNavButtons> = ({
   title,
   iconName,
   onPress,

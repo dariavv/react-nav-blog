@@ -5,9 +5,3 @@ export interface IPost {
   date: string;
   booked: boolean;
 }
-
-export interface IHeaderIcon {
-  title: string;
-  iconName: string;
-  onPress: () => void;
-}
