@@ -4,6 +4,7 @@ import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { format } from 'date-fns';
 
@@ -17,9 +18,10 @@ import HeaderNavButtons from 'components/HeaderNavButtons';
 
 const HomeStack = createStackNavigator();
 const BookedStack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const IosTab = createBottomTabNavigator();
+const AndroidTab = createMaterialBottomTabNavigator();
 
-export const HomeStackScreen: React.FC = () => {
+const HomeStackScreen: React.FC = () => {
   return (
     <HomeStack.Navigator
       initialRouteName="MainScreen"
@@ -120,7 +122,7 @@ export const HomeStackScreen: React.FC = () => {
   );
 };
 
-export const BookedStackScreen: React.FC = () => {
+const BookedStackScreen: React.FC = () => {
   return (
     <BookedStack.Navigator
       screenOptions={{
@@ -140,6 +142,13 @@ export const BookedStackScreen: React.FC = () => {
         component={BookedScreen}
         options={{
           title: 'Booked',
+          headerLeft: () => (
+            <HeaderNavButtons
+              title="Burger"
+              iconName="menu-outline"
+              onPress={() => {}}
+            />
+          ),
         }}
       />
       <HomeStack.Screen
@@ -163,29 +172,72 @@ export const BookedStackScreen: React.FC = () => {
   );
 };
 
-export const TabNavigation: React.FC = () => {
+const AndroidTabNavigation: React.FC = () => {
+  return (
+    <AndroidTab.Navigator
+      initialRouteName="Home"
+      activeColor={THEME.WHITE_COLOR}
+      inactiveColor={THEME.MAIN_COLOR4}
+      barStyle={{ backgroundColor: THEME.MAIN_COLOR }}>
+      <AndroidTab.Screen
+        name="Home"
+        component={HomeStackScreen}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="home" color={color} size={24} />
+          ),
+        }}
+      />
+      <AndroidTab.Screen
+        name="Bookmarked"
+        component={BookedStackScreen}
+        options={{
+          tabBarLabel: 'Bookmarked',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="star" color={color} size={24} />
+          ),
+        }}
+      />
+    </AndroidTab.Navigator>
+  );
+};
+
+const IosTabNavigation: React.FC = () => {
+  return (
+    <IosTab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color, size }) => {
+          let iconName = '';
+
+          if (route.name === 'Home') {
+            iconName = 'home';
+          } else if (route.name === 'Bookmarked') {
+            iconName = 'star';
+          }
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: THEME.MAIN_COLOR,
+        inactiveTintColor: THEME.TEXT_COLOR,
+      }}>
+      <IosTab.Screen name="Home" component={HomeStackScreen} />
+      <IosTab.Screen name="Bookmarked" component={BookedStackScreen} />
+    </IosTab.Navigator>
+  );
+};
+
+const TabNavigation: React.FC = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ color, size }) => {
-            let iconName = '';
-
-            if (route.name === 'Home') {
-              iconName = 'home';
-            } else if (route.name === 'Bookmarked') {
-              iconName = 'star';
-            }
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-        })}
-        tabBarOptions={{
-          activeTintColor: THEME.MAIN_COLOR,
-          inactiveTintColor: THEME.TEXT_COLOR,
-        }}>
-        <Tab.Screen name="Home" component={HomeStackScreen} />
-        <Tab.Screen name="Bookmarked" component={BookedStackScreen} />
-      </Tab.Navigator>
+      {Platform.OS === 'android' ? (
+        <AndroidTabNavigation />
+      ) : (
+        <IosTabNavigation />
+      )}
     </NavigationContainer>
   );
 };
+
+export default TabNavigation;
