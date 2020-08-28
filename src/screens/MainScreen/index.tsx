@@ -8,13 +8,8 @@ import { IPost, AppNavigationParamList } from 'interfaces';
 
 import { StackNavigationProp } from '@react-navigation/stack';
 
-type MainScreenNavigationProp = StackNavigationProp<
-  AppNavigationParamList,
-  'MainScreen'
->;
-
 type MainScreenProps = {
-  navigation: MainScreenNavigationProp;
+  navigation: StackNavigationProp<AppNavigationParamList, 'MainScreen'>;
 };
 
 const MainScreen: React.FC<MainScreenProps> = ({ navigation }) => {

@@ -7,7 +7,12 @@ export interface IPost {
 }
 
 export type AppNavigationParamList = {
-  MainScreen: undefined;
+  MainScreen:
+    | {
+        openItem: (post: IPost) => void;
+        keyExtractor: (post: IPost) => void;
+      }
+    | undefined;
   PostScreen: {
     postId: string;
     postDescription: string;

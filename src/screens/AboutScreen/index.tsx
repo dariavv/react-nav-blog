@@ -1,9 +1,15 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
+import { AppNavigationParamList } from 'interfaces';
 import THEME from 'theme';
 
-const AboutScreen: React.FC<any> = ({ navigation }) => {
+type AboutScreenProps = {
+  navigation: StackNavigationProp<AppNavigationParamList, 'AboutScreen'>;
+};
+
+const AboutScreen: React.FC<AboutScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>AboutScreen</Text>

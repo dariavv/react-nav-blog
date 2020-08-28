@@ -17,16 +17,9 @@ import { IPost, AppNavigationParamList } from 'interfaces';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-type ProfileScreenRouteProp = RouteProp<AppNavigationParamList, 'PostScreen'>;
-
-type PostScreenNavigationProp = StackNavigationProp<
-  AppNavigationParamList,
-  'PostScreen'
->;
-
 type PostScreenProps = {
-  route: ProfileScreenRouteProp;
-  navigation: PostScreenNavigationProp;
+  route: RouteProp<AppNavigationParamList, 'PostScreen'>;
+  navigation: StackNavigationProp<AppNavigationParamList, 'PostScreen'>;
 };
 
 const PostScreen: React.FC<PostScreenProps> = ({ route, navigation }) => {

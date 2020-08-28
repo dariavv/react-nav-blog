@@ -8,13 +8,8 @@ import { IPost, AppNavigationParamList } from 'interfaces';
 
 import { StackNavigationProp } from '@react-navigation/stack';
 
-type BookedScreenNavigationProp = StackNavigationProp<
-  AppNavigationParamList,
-  'BookedScreen'
->;
-
 type BookedScreenProps = {
-  navigation: BookedScreenNavigationProp;
+  navigation: StackNavigationProp<AppNavigationParamList, 'BookedScreen'>;
 };
 
 const BookedScreen: React.FC<BookedScreenProps> = ({ navigation }) => {
