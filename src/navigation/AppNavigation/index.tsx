@@ -75,7 +75,21 @@ export const HomeStackScreen: React.FC = () => {
         name="BookedScreen"
         component={BookedScreen}
         options={{
-          title: 'Bookmarked',
+          title: 'Booked',
+          headerRight: () => (
+            <HeaderNavButtons
+              title="Photo"
+              iconName="camera-outline"
+              onPress={() => {}}
+            />
+          ),
+          headerLeft: () => (
+            <HeaderNavButtons
+              title="Burger"
+              iconName="menu-outline"
+              onPress={() => {}}
+            />
+          ),
         }}
       />
       <HomeStack.Screen

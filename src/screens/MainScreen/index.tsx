@@ -4,22 +4,9 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import THEME from 'theme';
 import DATA from 'data';
 import Post from 'components/Post';
-import { IPost } from 'interfaces';
+import { IPost, AppNavigationParamList } from 'interfaces';
 
 import { StackNavigationProp } from '@react-navigation/stack';
-
-type AppNavigationParamList = {
-  MainScreen: undefined;
-  AboutScreen: undefined;
-  BookedScreen: undefined;
-  CreateScreen: undefined;
-  PostScreen: {
-    postId: string;
-    postDescription: string;
-    postDate: string;
-    isBooked: boolean;
-  };
-};
 
 type MainScreenNavigationProp = StackNavigationProp<
   AppNavigationParamList,

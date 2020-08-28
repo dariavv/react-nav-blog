@@ -5,3 +5,20 @@ export interface IPost {
   date: string;
   booked: boolean;
 }
+
+export type AppNavigationParamList = {
+  MainScreen: undefined;
+  PostScreen: {
+    postId: string;
+    postDescription: string;
+    postDate: string;
+    isBooked: boolean;
+  };
+  BookedScreen: {
+    openItem: (post: IPost) => void;
+    keyExtractor: (post: IPost) => void;
+    bookedData: any;
+  };
+  AboutScreen: undefined;
+  CreateScreen: undefined;
+};

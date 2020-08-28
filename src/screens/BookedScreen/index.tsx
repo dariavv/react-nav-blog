@@ -1,18 +1,43 @@
-import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import React, { useCallback } from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
 
 import THEME from 'theme';
+import DATA from 'data';
+import Post from 'components/Post';
+import { IPost, AppNavigationParamList } from 'interfaces';
 
-const BookedScreen: React.FC<any> = ({ navigation }) => {
+import { StackNavigationProp } from '@react-navigation/stack';
+
+type BookedScreenNavigationProp = StackNavigationProp<
+  AppNavigationParamList,
+  'BookedScreen'
+>;
+
+type BookedScreenProps = {
+  navigation: BookedScreenNavigationProp;
+};
+
+const BookedScreen: React.FC<BookedScreenProps> = ({ navigation }) => {
+  const openItem = (post: IPost) => {
+    navigation.navigate('PostScreen', {
+      postId: post.id,
+      postDescription: post.text,
+      postDate: post.date,
+      isBooked: post.booked,
+    });
+  };
+
+  const keyExtractor = useCallback((post: IPost) => post.id.toString(), []);
+
+  const bookedData = DATA.filter((post: IPost) => post.booked === true);
+
   return (
     <View style={styles.container}>
-      <Text>BookedScreen</Text>
-      <View style={styles.button}>
-        <Button
-          title="Go to Home"
-          onPress={() => navigation.navigate('MainScreen')}
-        />
-      </View>
+      <FlatList
+        data={bookedData}
+        keyExtractor={keyExtractor}
+        renderItem={({ item }) => <Post post={item} openItem={openItem} />}
+      />
     </View>
   );
 };
@@ -20,8 +45,7 @@ const BookedScreen: React.FC<any> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 10,
   },
   title: {
     fontSize: 24,
