@@ -38,7 +38,7 @@ export const HomeStackScreen: React.FC = ({ navigation }: any) => {
         name="MainScreen"
         component={MainScreen}
         options={{
-          title: 'Instagram',
+          title: 'HelloWorld',
           headerRight: () => (
             <HeaderNavButtons
               title="Photo"
@@ -143,7 +143,7 @@ export const AboutStackScreen: React.FC = ({ navigation }: any) => {
                 : THEME.BORDER_COLOR,
           },
           headerTintColor:
-            Platform.OS === 'android' ? THEME.WHITE_COLOR : THEME.DANGER_COLOR,
+            Platform.OS === 'android' ? THEME.WHITE_COLOR : THEME.MAIN_COLOR2,
           headerLeft: () => (
             <HeaderNavButtons
               title="Drawer"

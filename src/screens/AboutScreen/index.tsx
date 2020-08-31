@@ -1,24 +1,18 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StyleSheet, View, Text } from 'react-native';
 
-import { AppNavigationParamList } from 'interfaces';
 import THEME from 'theme';
 
-type AboutScreenProps = {
-  navigation: StackNavigationProp<AppNavigationParamList, 'AboutScreen'>;
-};
-
-const AboutScreen: React.FC<AboutScreenProps> = ({ navigation }) => {
+const AboutScreen: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text>AboutScreen</Text>
-      <View style={styles.button}>
-        <Button
-          title="Go to Home"
-          onPress={() => navigation.navigate('MainScreen')}
-        />
-      </View>
+      <Text style={styles.decrtiption}>
+        <Text style={styles.bold}>HelloWorld</Text> is a free photo blog app
+        available on Apple iOS and Android. People can upload photos to our
+        service and show them.
+      </Text>
+      <Text style={styles.decrtiption} />
+      <Text style={styles.bold}>Version 1.0.0</Text>
     </View>
   );
 };
@@ -28,14 +22,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 25,
   },
-  title: {
-    fontSize: 24,
+  decrtiption: {
+    marginBottom: 20,
+    textAlign: 'center',
+    fontFamily: 'OpenSans-Light',
+    fontSize: 18,
     color: THEME.TEXT_COLOR,
-    fontFamily: 'OpenSans-Bold',
   },
-  button: {
-    marginVertical: 10,
+  bold: {
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 18,
   },
 });
 
