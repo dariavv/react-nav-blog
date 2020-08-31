@@ -21,9 +21,6 @@ const AppNavigation: React.FC = () => {
         drawerContentOptions={{
           activeTintColor: THEME.MAIN_COLOR,
           itemStyle: { marginVertical: 15 },
-          labelStyle: {
-            fontFamily: 'OpenSans-Regular',
-          },
         }}>
         <AppDrawer.Screen
           name="Home"

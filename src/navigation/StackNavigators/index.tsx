@@ -43,7 +43,7 @@ export const HomeStackScreen: React.FC = ({ navigation }: any) => {
             <HeaderNavButtons
               title="Photo"
               iconName="camera-outline"
-              onPress={() => navigation.push('CreateScreen')}
+              onPress={() => navigation.navigate('CreateScreen')}
             />
           ),
           headerLeft: () => (
@@ -71,6 +71,20 @@ export const HomeStackScreen: React.FC = ({ navigation }: any) => {
             />
           ),
         })}
+      />
+      <HomeStack.Screen
+        name="CreateScreen"
+        component={CreateScreen}
+        options={{
+          title: 'Create New Post',
+          headerLeft: () => (
+            <HeaderNavButtons
+              title="Drawer"
+              iconName="menu-outline"
+              onPress={() => navigation.toggleDrawer()}
+            />
+          ),
+        }}
       />
     </HomeStack.Navigator>
   );
