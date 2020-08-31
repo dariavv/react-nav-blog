@@ -27,7 +27,7 @@ const SCREEN_OPTIONS = {
 const HomeStack = createStackNavigator();
 const BookedStack = createStackNavigator();
 
-export const HomeStackScreen: React.FC = () => {
+export const HomeStackScreen: React.FC = ({ navigation }: any) => {
   return (
     <HomeStack.Navigator
       initialRouteName="MainScreen"
@@ -48,7 +48,7 @@ export const HomeStackScreen: React.FC = () => {
             <HeaderNavButtons
               title="Burger"
               iconName="menu-outline"
-              onPress={() => {}}
+              onPress={() => navigation.toggleDrawer()}
             />
           ),
         }}
@@ -84,7 +84,7 @@ export const HomeStackScreen: React.FC = () => {
             <HeaderNavButtons
               title="Burger"
               iconName="menu-outline"
-              onPress={() => {}}
+              onPress={() => navigation.toggleDrawer()}
             />
           ),
         }}
@@ -117,7 +117,7 @@ export const HomeStackScreen: React.FC = () => {
   );
 };
 
-export const BookedStackScreen: React.FC = () => {
+export const BookedStackScreen: React.FC = ({ navigation }: any) => {
   return (
     <BookedStack.Navigator screenOptions={SCREEN_OPTIONS}>
       <BookedStack.Screen
@@ -127,9 +127,9 @@ export const BookedStackScreen: React.FC = () => {
           title: 'Booked',
           headerLeft: () => (
             <HeaderNavButtons
-              title="Burger"
+              title="Drawer"
               iconName="menu-outline"
-              onPress={() => {}}
+              onPress={() => navigation.toggleDrawer()}
             />
           ),
         }}
