@@ -26,6 +26,8 @@ const SCREEN_OPTIONS = {
 
 const HomeStack = createStackNavigator();
 const BookedStack = createStackNavigator();
+const AboutStack = createStackNavigator();
+const CreateStack = createStackNavigator();
 
 export const HomeStackScreen: React.FC = ({ navigation }: any) => {
   return (
@@ -41,59 +43,16 @@ export const HomeStackScreen: React.FC = ({ navigation }: any) => {
             <HeaderNavButtons
               title="Photo"
               iconName="camera-outline"
-              onPress={() => {}}
+              onPress={() => navigation.push('CreateScreen')}
             />
           ),
           headerLeft: () => (
             <HeaderNavButtons
-              title="Burger"
+              title="Drawer"
               iconName="menu-outline"
               onPress={() => navigation.toggleDrawer()}
             />
           ),
-        }}
-      />
-      <HomeStack.Screen
-        component={AboutScreen}
-        name="AboutScreen"
-        options={{
-          title: 'About',
-          headerStyle: {
-            backgroundColor:
-              Platform.OS === 'android'
-                ? THEME.DANGER_COLOR
-                : THEME.BORDER_COLOR,
-          },
-          headerTintColor:
-            Platform.OS === 'android' ? THEME.WHITE_COLOR : THEME.DANGER_COLOR,
-        }}
-      />
-      <HomeStack.Screen
-        name="BookedScreen"
-        component={BookedScreen}
-        options={{
-          title: 'Booked',
-          headerRight: () => (
-            <HeaderNavButtons
-              title="Photo"
-              iconName="camera-outline"
-              onPress={() => {}}
-            />
-          ),
-          headerLeft: () => (
-            <HeaderNavButtons
-              title="Burger"
-              iconName="menu-outline"
-              onPress={() => navigation.toggleDrawer()}
-            />
-          ),
-        }}
-      />
-      <HomeStack.Screen
-        name="CreateScreen"
-        component={CreateScreen}
-        options={{
-          title: 'Create',
         }}
       />
       <HomeStack.Screen
@@ -152,5 +111,55 @@ export const BookedStackScreen: React.FC = ({ navigation }: any) => {
         })}
       />
     </BookedStack.Navigator>
+  );
+};
+
+export const AboutStackScreen: React.FC = ({ navigation }: any) => {
+  return (
+    <AboutStack.Navigator screenOptions={SCREEN_OPTIONS}>
+      <AboutStack.Screen
+        component={AboutScreen}
+        name="AboutScreen"
+        options={{
+          title: 'About App',
+          headerStyle: {
+            backgroundColor:
+              Platform.OS === 'android'
+                ? THEME.DANGER_COLOR
+                : THEME.BORDER_COLOR,
+          },
+          headerTintColor:
+            Platform.OS === 'android' ? THEME.WHITE_COLOR : THEME.DANGER_COLOR,
+          headerLeft: () => (
+            <HeaderNavButtons
+              title="Drawer"
+              iconName="menu-outline"
+              onPress={() => navigation.toggleDrawer()}
+            />
+          ),
+        }}
+      />
+    </AboutStack.Navigator>
+  );
+};
+
+export const CreateStackScreen: React.FC = ({ navigation }: any) => {
+  return (
+    <CreateStack.Navigator screenOptions={SCREEN_OPTIONS}>
+      <CreateStack.Screen
+        name="CreateScreen"
+        component={CreateScreen}
+        options={{
+          title: 'Create New Post',
+          headerLeft: () => (
+            <HeaderNavButtons
+              title="Drawer"
+              iconName="menu-outline"
+              onPress={() => navigation.toggleDrawer()}
+            />
+          ),
+        }}
+      />
+    </CreateStack.Navigator>
   );
 };
