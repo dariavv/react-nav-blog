@@ -10,18 +10,9 @@ type BookedScreenProps = {
 };
 
 const BookedScreen: React.FC<BookedScreenProps> = ({ navigation }) => {
-  const openItem = (post: IPost) => {
-    navigation.navigate('PostScreen', {
-      postId: post.id,
-      postDescription: post.text,
-      postDate: post.date,
-      isBooked: post.booked,
-    });
-  };
-
   const bookedData = DATA.filter((post: IPost) => post.booked === true);
 
-  return <PostList data={bookedData} openItem={openItem} />;
+  return <PostList data={bookedData} navigation={navigation} />;
 };
 
 export default BookedScreen;
