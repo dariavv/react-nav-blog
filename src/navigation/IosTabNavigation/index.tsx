@@ -2,7 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import THEME from 'theme';
-import { HomeStackScreen, BookedStackScreen } from 'navigation/StackNavigators';
+import { HomeStackScreen } from 'navigation/StackNavigators/HomeStackScreen';
+import { BookedStackScreen } from 'navigation/StackNavigators/BookedStackScreen';
 
 const IosTab = createBottomTabNavigator();
 

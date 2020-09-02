@@ -27,3 +27,14 @@ export type AppNavigationParamList = {
   AboutScreen: undefined;
   CreateScreen: undefined;
 };
+
+export type ScreenOptions = {
+  headerStyle: {
+    backgroundColor: string;
+  };
+  headerTintColor: string;
+  headerTitleStyle: {
+    fontSize: number;
+    fontFamily: string;
+  };
+};

@@ -5,11 +5,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import TabNavigation from 'navigation/TabNavigation';
-import {
-  CreateStackScreen,
-  AboutStackScreen,
-} from 'navigation/StackNavigators';
 import THEME from 'theme';
+import { AboutStackScreen } from 'navigation/StackNavigators/AboutStackScreen';
+import { CreateStackScreen } from 'navigation/StackNavigators/CreateStackScreen';
 
 const AppDrawer = createDrawerNavigator();
 
@@ -33,7 +31,7 @@ const AppNavigation: React.FC = () => {
           }}
         />
         <AppDrawer.Screen
-          name="About App"
+          name="About"
           component={AboutStackScreen}
           options={{
             title: 'About App',
@@ -47,7 +45,7 @@ const AppNavigation: React.FC = () => {
           }}
         />
         <AppDrawer.Screen
-          name="Create New Post"
+          name="Create"
           component={CreateStackScreen}
           options={{
             title: 'Create New Post',
