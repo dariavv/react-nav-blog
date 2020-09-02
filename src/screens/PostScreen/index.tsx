@@ -12,34 +12,14 @@ import { format } from 'date-fns';
 
 import DATA from 'data';
 import THEME from 'theme';
-import { IPost } from 'interfaces';
+import { IPost, AppNavigationParamList } from 'interfaces';
 
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-type AppNavigationParamList = {
-  MainScreen: undefined;
-  AboutScreen: undefined;
-  BookedScreen: undefined;
-  CreateScreen: undefined;
-  PostScreen: {
-    postId: string;
-    postDescription: string;
-    postDate: string;
-    isBooked: boolean;
-  };
-};
-
-type ProfileScreenRouteProp = RouteProp<AppNavigationParamList, 'PostScreen'>;
-
-type PostScreenNavigationProp = StackNavigationProp<
-  AppNavigationParamList,
-  'PostScreen'
->;
-
 type PostScreenProps = {
-  route: ProfileScreenRouteProp;
-  navigation: PostScreenNavigationProp;
+  route: RouteProp<AppNavigationParamList, 'PostScreen'>;
+  navigation: StackNavigationProp<AppNavigationParamList, 'PostScreen'>;
 };
 
 const PostScreen: React.FC<PostScreenProps> = ({ route, navigation }) => {

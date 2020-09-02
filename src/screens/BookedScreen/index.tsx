@@ -1,36 +1,18 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-import THEME from 'theme';
+import PostList from 'components/PostList';
+import { IPost, AppNavigationParamList } from 'interfaces';
+import DATA from 'data';
 
-const BookedScreen: React.FC<any> = ({ navigation }) => {
-  return (
-    <View style={styles.container}>
-      <Text>BookedScreen</Text>
-      <View style={styles.button}>
-        <Button
-          title="Go to Home"
-          onPress={() => navigation.navigate('MainScreen')}
-        />
-      </View>
-    </View>
-  );
+type BookedScreenProps = {
+  navigation: StackNavigationProp<AppNavigationParamList, 'BookedScreen'>;
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 24,
-    color: THEME.TEXT_COLOR,
-    fontFamily: 'OpenSans-Bold',
-  },
-  button: {
-    marginVertical: 10,
-  },
-});
+const BookedScreen: React.FC<BookedScreenProps> = ({ navigation }) => {
+  const bookedData = DATA.filter((post: IPost) => post.booked === true);
+
+  return <PostList data={bookedData} navigation={navigation} />;
+};
 
 export default BookedScreen;
