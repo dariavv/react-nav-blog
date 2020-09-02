@@ -43,6 +43,7 @@
       "assets": ["./src/assets"],
       "components": ["./src/components"],
       "modules": ["./src/modules"],
+      "navigation": ["./src/navigation"],
       "screens": ["./src/screens"]
     },
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
