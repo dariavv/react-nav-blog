@@ -26,24 +26,15 @@ const PostScreen: React.FC<PostScreenProps> = ({ route, navigation }) => {
   const dispatch = useDispatch();
   const { postId } = route.params;
 
-  const undefinedPost = {
-    id: '0',
-    img: require('../../../assets/images/default.jpg'),
-    text: 'No posts',
-    date: '666',
-    booked: false,
-  };
-
-  const post =
-    useSelector((state: IState) =>
-      state.post.allPosts.find((item: IPost) => item.id === postId),
-    ) || undefinedPost;
+  const post = useSelector((state: IState) =>
+    state.post.allPosts.find((item: IPost) => item.id === postId),
+  );
 
   const removeItem = () => {
     Alert.alert(
       'Delete Post',
       `Are you sure you want to delete Post ${format(
-        new Date(post.date),
+        new Date(post!.date),
         'dd-MM-yyyy HH:mm',
       )}?`,
       [
