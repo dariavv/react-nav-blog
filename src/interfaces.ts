@@ -6,6 +6,13 @@ export interface IPost {
   booked: boolean;
 }
 
+export interface IState {
+  post: {
+    allPosts: IPost[];
+    bookedPosts: IPost[];
+  };
+}
+
 export type AppNavigationParamList = {
   MainScreen:
     | {

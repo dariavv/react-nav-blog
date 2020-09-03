@@ -8,14 +8,13 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { format } from 'date-fns';
 
 import DATA from 'data';
 import THEME from 'theme';
 import { IPost, AppNavigationParamList } from 'interfaces';
-
-import { RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 type PostScreenProps = {
   route: RouteProp<AppNavigationParamList, 'PostScreen'>;
