@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { LOAD_POSTS, TOGGLE_BOOKED } from 'store/types';
+import { LOAD_POSTS, TOGGLE_BOOKED, DELETE_POST } from 'store/types';
 import { IPost } from 'interfaces';
 
 interface IAction {
@@ -34,6 +34,16 @@ export const postReducer = (state = initialState, action: IAction) => {
         ...state,
         allPosts,
         bookedPosts: allPosts.filter((post: IPost) => post.booked === true),
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        allPosts: state.allPosts.filter(
+          (post: IPost) => post.id !== action.payload,
+        ),
+        bookedPosts: state.bookedPosts.filter(
+          (post: IPost) => post.id !== action.payload,
+        ),
       };
     default:
       return state;

@@ -10,11 +10,12 @@ import {
 } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
 
-import DATA from 'data';
 import THEME from 'theme';
-import { IPost, AppNavigationParamList } from 'interfaces';
+import { IPost, AppNavigationParamList, IState } from 'interfaces';
+import { deletePost } from 'store/actions/postAction';
 
 type PostScreenProps = {
   route: RouteProp<AppNavigationParamList, 'PostScreen'>;
@@ -22,15 +23,21 @@ type PostScreenProps = {
 };
 
 const PostScreen: React.FC<PostScreenProps> = ({ route, navigation }) => {
+  const dispatch = useDispatch();
   const { postId } = route.params;
 
-  const post: IPost = DATA.find((postItem) => postItem.id === postId) || {
+  const undefinedPost = {
     id: '0',
-    img: '',
-    text: '',
-    date: '',
+    img: require('../../../assets/images/default.jpg'),
+    text: 'No posts',
+    date: '666',
     booked: false,
   };
+
+  const post =
+    useSelector((state: IState) =>
+      state.post.allPosts.find((item: IPost) => item.id === postId),
+    ) || undefinedPost;
 
   const removeItem = () => {
     Alert.alert(
@@ -47,12 +54,19 @@ const PostScreen: React.FC<PostScreenProps> = ({ route, navigation }) => {
         {
           text: 'Delete',
           style: 'destructive',
-          onPress: () => {},
+          onPress: () => {
+            navigation.goBack();
+            dispatch(deletePost(postId));
+          },
         },
       ],
       { cancelable: false },
     );
   };
+
+  if (!post) {
+    return null;
+  }
 
   return (
     <ScrollView style={styles.container}>
