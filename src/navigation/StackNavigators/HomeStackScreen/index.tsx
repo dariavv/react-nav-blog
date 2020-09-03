@@ -47,8 +47,6 @@ export const HomeStackScreen: React.FC = ({ navigation }: any) => {
         component={PostScreen}
         options={({ route }: any) => {
           const isBooked = bookedList.some(
-            // если id выбранного поста совпадает с хотя бы одним id массива bookedList
-            // возвращаем true
             (item) => item.id === route.params.postId,
           );
           return {
