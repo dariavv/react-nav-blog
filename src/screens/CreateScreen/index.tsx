@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import { AppNavigationParamList } from 'interfaces';
 import THEME from 'theme';
 import { createPost } from 'store/actions/postAction';
+import PhotoPicker from 'components/PhotoPicker';
 
 type CreateScreenProps = {
   navigation: StackNavigationProp<AppNavigationParamList, 'CreateScreen'>;
@@ -61,6 +62,7 @@ const CreateScreen: React.FC<CreateScreenProps> = ({ navigation }) => {
           </View>
         </View>
       </TouchableWithoutFeedback>
+      <PhotoPicker />
     </ScrollView>
   );
 };
