@@ -34,6 +34,6 @@ export const createPost = (post: IPost) => {
 
   return {
     type: CREATE_POST,
-    payload: post,
+    payload: postItem,
   };
 };

@@ -1,70 +1,92 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Image, Button } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Button,
+  PermissionsAndroid,
+} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
 type Options = {
-  title: string;
-  cameraType: string;
-  mediaType: string;
-  storageOptions: {
-    skipBackup: boolean;
-    path: string;
+  title?: string;
+  cameraType?: 'back' | 'front' | undefined;
+  mediaType?: 'video' | 'photo' | 'mixed' | undefined;
+  storageOptions?: {
+    skipBackup?: boolean;
+    path?: string;
   };
 };
 
-const PhotoPicker: React.FC = () => {
+type PhotoPickerProps = {
+  onPick: (arg: string) => void;
+};
+
+const PhotoPicker: React.FC<PhotoPickerProps> = ({ onPick }) => {
   const [fileUri, setFileUri] = useState(null);
 
   const chooseImage = async () => {
     const options = {
       title: 'Select Photo',
-      // cameraType: 'front',
-      // mediaType: 'photo',
+      cameraType: 'back',
+      mediaType: 'photo',
       storageOptions: {
         skipBackup: true,
         path: 'images',
       },
     };
 
-    ImagePicker.showImagePicker(options, (response: any) => {
-      console.log('Response = ', response);
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        setFileUri(response.uri); // update state to update Image
-      }
-    });
+    const newLocal: any = {
+      title: 'We need your permission',
+    };
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      newLocal,
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log('You can use the camera');
+
+      ImagePicker.showImagePicker(options as Options, (response: any) => {
+        console.log('Response = ', response);
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else if (response.customButton) {
+          console.log('User tapped custom button: ', response.customButton);
+        } else {
+          setFileUri(response.uri);
+          onPick(response.uri);
+        }
+      });
+    } else {
+      console.log('Camera permission denied');
+    }
   };
+
+  const defaultImage = require('../../../assets/images/default.jpg');
 
   return (
     <View style={styles.container}>
-      <Button title="Create photo" onPress={chooseImage} />
       {fileUri && (
         <Image
-          source={
-            fileUri
-              ? { uri: fileUri }
-              : require('../../../assets/images/default.jpg')
-          }
+          source={fileUri ? { uri: fileUri } : defaultImage}
           style={styles.image}
         />
       )}
+      <Button title="Create Photo" onPress={chooseImage} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 10,
+    marginTop: 10,
   },
   image: {
     width: '100%',
     height: 230,
-    marginTop: 10,
+    marginBottom: 10,
   },
 });
 

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   StyleSheet,
   ScrollView,
   View,
   Text,
   TextInput,
-  Image,
   Button,
   TouchableWithoutFeedback,
   Keyboard,
@@ -25,19 +24,23 @@ type CreateScreenProps = {
 const CreateScreen: React.FC<CreateScreenProps> = ({ navigation }) => {
   const [text, setText] = useState('');
   const dispatch = useDispatch();
-
-  const defaultImage = require('../../../assets/images/default.jpg');
+  const imgRef = useRef();
 
   const createPostHandler = () => {
     const newPost = {
       id: '0',
-      img: defaultImage,
+      img: imgRef.current,
       text,
       date: new Date().toJSON(),
       booked: false,
     };
+    console.log('URI', newPost.img);
     dispatch(createPost(newPost));
     navigation.navigate('MainScreen');
+  };
+
+  const photoPickHandler = (uri: any) => {
+    imgRef.current = uri;
   };
 
   return (
@@ -52,17 +55,17 @@ const CreateScreen: React.FC<CreateScreenProps> = ({ navigation }) => {
             onChangeText={setText}
             multiline
           />
-          <Image style={styles.image} source={defaultImage} />
+          <PhotoPicker onPick={photoPickHandler} />
           <View style={styles.button}>
             <Button
               title="Create Post"
               color={THEME.MAIN_COLOR}
               onPress={() => createPostHandler()}
+              disabled={!text}
             />
           </View>
         </View>
       </TouchableWithoutFeedback>
-      <PhotoPicker />
     </ScrollView>
   );
 };
